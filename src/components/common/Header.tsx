@@ -26,8 +26,8 @@ class Header extends React.Component<Props, State> {
         </Navbar.Brand>
         <Nav className="">
           <Nav.Link id="home" href="/">
-            <HomeRoundedIcon fontSize="large" />
-            <span className="align-middle">Home</span>
+            <HomeRoundedIcon fontSize="large" className="text-white" />
+            <span className="align-middle text-white">Home</span>
           </Nav.Link>
         </Nav>
         <Form inline>
