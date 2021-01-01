@@ -5,13 +5,18 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+import { SearchFunction } from "../../model/Query";
 import logo from "../../assets/images/logo.svg";
 import "../../assets/styles/Header.scss";
 
-interface Props {}
+interface Props extends SearchFunction {}
 interface State {}
 
 class Header extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   public render() {
     return (
       <Navbar className="w-100 p-1" bg="dark" variant="dark" expand="lg">
@@ -31,7 +36,12 @@ class Header extends React.Component<Props, State> {
           </Nav.Link>
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-2" />
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-2"
+            onChange={this.props.onChangeSearchBox}
+          />
           <Button variant="outline-info">Search</Button>
         </Form>
       </Navbar>
