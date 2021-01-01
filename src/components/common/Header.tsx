@@ -1,4 +1,5 @@
 import React from "react";
+import SearchResultList from "./SearchResultList";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
@@ -35,7 +36,7 @@ class Header extends React.Component<Props, State> {
             <span className="align-middle text-white">Home</span>
           </Nav.Link>
         </Nav>
-        <Form inline>
+        <Form inline className="position-relative">
           <FormControl
             type="text"
             placeholder="Search"
@@ -43,6 +44,7 @@ class Header extends React.Component<Props, State> {
             onChange={this.props.onChangeSearchBox}
           />
           <Button variant="outline-info">Search</Button>
+          <SearchResultList />
         </Form>
       </Navbar>
     );
