@@ -20,18 +20,22 @@ class App extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      queryText: "",
+      keywords: "",
       bestMatches: [],
     };
 
     this.onChangeSearchBox = this.onChangeSearchBox.bind(this);
+    this.onClickSearchButton = this.onClickSearchButton.bind(this);
   }
 
   public onChangeSearchBox(e: React.ChangeEvent<HTMLInputElement>) {
     const keywords: string = e.target.value;
-    const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${process.env.REACT_APP_API_KEY}`;
+    this.setState({ keywords: keywords });
+  }
 
-    console.log(url);
+  public onClickSearchButton() {
+    const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${this.state.keywords}&apikey=${process.env.REACT_APP_API_KEY}`;
+
     fetch(url, { mode: "cors" })
       .then((res) => res.json())
       .then(
@@ -57,6 +61,7 @@ class App extends React.Component<Props, State> {
             <Row>
               <Header
                 onChangeSearchBox={this.onChangeSearchBox}
+                onClickSearchButton={this.onClickSearchButton}
                 bestMatches={this.state.bestMatches}
               />
             </Row>

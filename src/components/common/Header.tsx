@@ -59,7 +59,12 @@ class Header extends React.Component<Props, State> {
             className="mr-2"
             onChange={this.props.onChangeSearchBox}
           />
-          <Button variant="outline-info">Search</Button>
+          <Button
+            variant="outline-info"
+            onClick={this.props.onClickSearchButton}
+          >
+            Search
+          </Button>
           <SearchResultList bestMatches={this.state.bestMatches} />
         </Form>
       </Navbar>

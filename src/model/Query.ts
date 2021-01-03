@@ -1,10 +1,11 @@
 export type QueryData = {
-  queryText: string;
+  keywords: string;
   bestMatches: BestMatches[];
 };
 
 export type SearchFunction = {
   onChangeSearchBox: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClickSearchButton: () => void;
 };
 
 export type BestMatches = {
