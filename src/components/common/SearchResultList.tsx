@@ -31,9 +31,8 @@ class SearchResultList extends React.Component<Props, State> {
     const companyList =
       this.state.bestMatches.length > 0
         ? this.state.bestMatches.map((entry, i) => (
-            <ListGroup.Item key={i}>
+            <ListGroup.Item key={i} className="d-flex justify-content-between">
               <span className="font-weight-bold">{`${entry["1. symbol"]}`}</span>
-              &emsp;
               <span
                 className="d-inline-block text-truncate"
                 style={{ "max-width": "150px" }}
