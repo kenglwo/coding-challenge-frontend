@@ -1,21 +1,37 @@
 import React from "react";
-import SearchResultList from "./SearchResultList";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import SearchResultList from "./SearchResultList";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import { SearchFunction } from "../../model/Query";
+import { SearchFunction, BestMatches } from "../../model/Query";
 import logo from "../../assets/images/logo.svg";
 import "../../assets/styles/Header.scss";
 
-interface Props extends SearchFunction {}
-interface State {}
+interface Props extends SearchFunction {
+  bestMatches: BestMatches[];
+}
+interface State {
+  bestMatches: BestMatches[];
+}
 
 class Header extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      bestMatches: this.props.bestMatches,
+    };
+  }
+
+  public componentDidUpdate(prevProps: Props) {
+    if (this.props.bestMatches !== prevProps.bestMatches) {
+      this.setState({
+        bestMatches: this.props.bestMatches,
+      });
+    }
   }
 
   public render() {
@@ -44,7 +60,7 @@ class Header extends React.Component<Props, State> {
             onChange={this.props.onChangeSearchBox}
           />
           <Button variant="outline-info">Search</Button>
-          <SearchResultList />
+          <SearchResultList bestMatches={this.state.bestMatches} />
         </Form>
       </Navbar>
     );

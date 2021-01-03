@@ -11,7 +11,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/App.scss";
 
 interface Props {}
-interface State extends QueryData {}
+interface State extends QueryData {
+  ifSearchResultTableShown: boolean;
+}
 
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -29,11 +31,17 @@ class App extends React.Component<Props, State> {
     const keywords: string = e.target.value;
     const url = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${process.env.REACT_APP_API_KEY}`;
 
+    console.log(url);
     fetch(url, { mode: "cors" })
       .then((res) => res.json())
       .then(
         (result) => {
-          this.setState({ bestMatches: result });
+          const data = result.hasOwnProperty("bestMatches")
+            ? result["bestMatches"]
+            : [];
+          this.setState({
+            bestMatches: data,
+          });
         },
         (error) => {
           console.log("Error: could not fetch API data");
@@ -47,7 +55,10 @@ class App extends React.Component<Props, State> {
         <Container className="bg-dark p-0" fluid>
           <BrowserRouter>
             <Row>
-              <Header onChangeSearchBox={this.onChangeSearchBox} />
+              <Header
+                onChangeSearchBox={this.onChangeSearchBox}
+                bestMatches={this.state.bestMatches}
+              />
             </Row>
             <Row>
               <Col md={2}>
