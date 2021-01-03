@@ -2,7 +2,6 @@ import React from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 // import Button from "@material-ui/core/Button";
 import { BestMatches } from "../../model/Query";
-import "../../assets/styles/Header.scss";
 
 interface Props {
   bestMatches: BestMatches;
@@ -35,7 +34,10 @@ class SearchResultList extends React.Component<Props, State> {
             <ListGroup.Item key={i}>
               <span className="font-weight-bold">{`${entry["1. symbol"]}`}</span>
               &emsp;
-              {`${entry["2. name"]}`}
+              <span
+                className="d-inline-block text-truncate"
+                style={{ "max-width": "150px" }}
+              >{`${entry["2. name"]}`}</span>
             </ListGroup.Item>
           ))
         : "";
