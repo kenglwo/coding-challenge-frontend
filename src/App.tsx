@@ -11,9 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/App.scss";
 
 interface Props {}
-interface State extends QueryData {
-  ifSearchResultTableShown: boolean;
-}
+interface State extends QueryData {}
 
 class App extends React.Component<Props, State> {
   constructor(props: Props) {

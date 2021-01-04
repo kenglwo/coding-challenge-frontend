@@ -4,10 +4,10 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { BestMatches } from "../../model/Query";
 
 interface Props {
-  bestMatches: BestMatches;
+  bestMatches: BestMatches[];
 }
 interface State {
-  bestMatches: BestMatches;
+  bestMatches: BestMatches[];
 }
 
 class SearchResultList extends React.Component<Props, State> {
@@ -31,11 +31,11 @@ class SearchResultList extends React.Component<Props, State> {
     const companyList =
       this.state.bestMatches.length > 0
         ? this.state.bestMatches.map((entry, i) => (
-            <ListGroup.Item key={i} className="d-flex justify-content-between">
+            <ListGroup.Item key={i} className="search_result_item d-flex justify-content-between">
               <span className="font-weight-bold">{`${entry["1. symbol"]}`}</span>
               <span
+                id="entry_name"
                 className="d-inline-block text-truncate"
-                style={{ "max-width": "150px" }}
               >{`${entry["2. name"]}`}</span>
             </ListGroup.Item>
           ))
